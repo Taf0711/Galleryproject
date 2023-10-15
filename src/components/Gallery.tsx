@@ -1,27 +1,30 @@
 import React from "react";
+import {Card, CardContent, Typography, Grid} from '@mui/material';
 
 
-const images = [
-    '6B9B0072-E0CA-445D-8E2A-690BAD7DC6D8.jpg',
-    '61F3FCC7-1064-4DB5-A85B-11B8E39CE161.jpg',
-    'IMG_1002.jpg',
-    'IMG_1699.jpg',
-    'IMG_2023.jpg',
-    'IMG_2327.jpg',
-];
+interface GalleryProps {
+    images: string[];
+}
 
-function Gallery() {
+
+function Gallery({ images }: GalleryProps) {
     return (
-        <div className="gallery">
-            {images.map((image,index) => (
-                <div key={index} className="gallery-item">
-                    <img src={`/images/${image}`} alt={`Image ${index}`} />
-                </div>
-            ))} 
-        </div>
+        <Grid container spacing={2}>
+      {images.map((image, index) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          <Card>
+            <img src={image} alt={`Image ${index}`} style={{ maxWidth: '100%' }} />
+            <CardContent>
+              <Typography variant="body2" color="textSecondary">
+                Description for Image {index + 1}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
     );
 }
 
-export default Gallery; 
-
+export default Gallery;
 
