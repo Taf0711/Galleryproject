@@ -1,29 +1,38 @@
 import React from "react";
-import {Card, CardContent, Typography, Grid} from '@mui/material';
+import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
 
 
 interface GalleryProps {
     images: string[];
 }
 
-
 function Gallery({ images }: GalleryProps) {
-    return (
-        <Grid container spacing={2}>
+  return (
+    <Grid container spacing={3}>
       {images.map((image, index) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
           <Card>
-            <img src={image} alt={`Image ${index}`} style={{ maxWidth: '100%' }} />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary">
-                Description for Image {index + 1}
-              </Typography>
-            </CardContent>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt={`Image ${index}`}
+                height="140"
+                image={image}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Image {index + 1}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Description for Image {index + 1}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
           </Card>
         </Grid>
       ))}
     </Grid>
-    );
+  );
 }
 
 export default Gallery;
